@@ -27,12 +27,12 @@ public class Carne extends Producto implements Comestible {
 	}
 
 
-
+	@Override
 	public String getFechaDeElaboracion() {
 		// TODO Auto-generated method stub
 		return this.fechaDeElaboracion;
 	}
-
+	@Override
 	public String getFechaDeVencimiento() {
 		// TODO Auto-generated method stub
 		return this.fechaDeVencimiento;

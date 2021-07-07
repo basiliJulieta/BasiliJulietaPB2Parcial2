@@ -1,20 +1,26 @@
 package dominio.parcial2;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class Supermercado {
 	
 	String nombre; // Nombre del supermercado
-	private Set<Producto> productosExistentes; // Listado de productos que se comercializan
-	private List<Producto> productosDisponibles; // Detalle de cada producto ingresado
-	private Map<Integer, Venta> ventasRealizadas; // Listado de ventas realizadas (identificadas por el número de venta)
-	Integer contadorDeVentas; // Identificador del número de venta
+	private HashSet<Producto> productosExistentes; // Listado de productos que se comercializan
+	private ArrayList<Producto> productosDisponibles; // Detalle de cada producto ingresado
+	private HashMap<Integer, Venta> ventasRealizadas; // Listado de ventas realizadas (identificadas por el número de venta)
+	Integer contadorDeVentas;
+	private Integer cantidadDeUnidades;// Identificador del número de venta
 	
 	public Supermercado(String nombre) {
 		// Constructor de la clase
 		this.nombre=nombre;
+		this.productosExistentes = (HashSet<Producto>) new HashSet<Producto>();
+		this.productosDisponibles = new ArrayList<Producto>();
+		this.ventasRealizadas = new HashMap<Integer, Venta>();
+		
+		
 	}
 
 	public Boolean ingresarProducto(Producto nuevo) {
@@ -33,7 +39,14 @@ public class Supermercado {
 	}
 	
 	public Integer getStock(Integer codigo) {
-		// Devuelve la cantidad de unidades de un producto determinado
+		Integer cantidadDeUnidades = 0;
+		for(Producto producto: productosDisponibles){
+			if(producto.getCodigo().equals(codigo)){
+				cantidadDeUnidades++;
+			}
+			return cantidadDeUnidades;
+			// Devuelve la cantidad de unidades de un producto determinado
+		}
 	}
 	
 	private Producto productoExiste(Integer codigoDeProducto) throws ProductoInexistente{
@@ -49,6 +62,7 @@ public class Supermercado {
 	}
 	
 	private Producto getProductoPorCodigo(Integer codigoDeProducto) throws ProductoSinStock {
+		
 		// Busca la disponibilidad de un producto
 	}
 	
@@ -59,10 +73,17 @@ public class Supermercado {
 	}
 	
 	public Venta getVenta(Integer nueroDeVenta) {
+		
+		return this.ventasRealizadas.get(nueroDeVenta);
 		// Devuelve una venta en función de su número identificatorio
 	}
 
 	public void agregarAlCarrito(Integer numeroDeVenta, Integer codigoDeProducto) throws ProductoSinStock, ProductoInexistente {
+		
+		productoExiste(codigoDeProducto);
+		getStock(codigoDeProducto);
+		this.ventasRealizadas.put(numeroDeVenta,codigoDeProducto);
+				
 		// Incorpora al carrito de compras de la venta identificada por el "numeroDeVenta", el producto identificado por el "codigoDeProducto"
 	}
 	

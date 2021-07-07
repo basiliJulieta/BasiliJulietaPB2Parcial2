@@ -8,6 +8,8 @@ public class Producto {
 	private Double precio;
 	private Integer garantia;
 	private String talle;
+	private String fechaDeElaboracion;
+	private String fechaDeVencimiento;
 	
 	public Producto(Integer codigo, String descripcion, String marca, Double precio) {
 		super();
@@ -62,6 +64,16 @@ public class Producto {
 	public String getColor() {
 		// TODO Auto-generated method stub
 		return this.talle;
+	}
+
+	public String getFechaDeElaboracion() {
+		// TODO Auto-generated method stub
+		return this.fechaDeElaboracion;
+	}
+
+	public String getFechaDeVencimiento() {
+		// TODO Auto-generated method stub
+		return this.fechaDeVencimiento;
 	}
 	
 	
