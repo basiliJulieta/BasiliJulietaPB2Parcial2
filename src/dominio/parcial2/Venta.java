@@ -5,6 +5,7 @@ public class Venta {
 	private Integer numero;
 	private Integer dni;
 	private String nombre;
+	private Double importe;
 	public Venta(Integer dni, String nombre) {
 		super();
 		this.dni = dni;
@@ -27,6 +28,10 @@ public class Venta {
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	public Double getImporte() {
+		// TODO Auto-generated method stub
+		return this.importe;
 	}
 	
 	

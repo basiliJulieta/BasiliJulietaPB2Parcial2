@@ -33,8 +33,8 @@ public class Supermercado {
 		// Ingresa un nuevo producto		
 	}
 
-	public Set<Producto> getOfertaDeProductos() {
-		return this.productosExistentes;
+	public ArrayList<Producto> getOfertaDeProductos() {
+		return this.productosDisponibles;
 		// Devuelve el conjunto de productos que se comercializan
 	}
 	
@@ -63,6 +63,12 @@ public class Supermercado {
 	
 	private Producto getProductoPorCodigo(Integer codigoDeProducto) throws ProductoSinStock {
 		
+		for(Producto producto : productosDisponibles){
+			if(productoExiste(codigoDeProducto).equals(codigoDeProducto)){
+				return producto;
+			}
+		}
+		throw new ProductoSinStock();
 		// Busca la disponibilidad de un producto
 	}
 	
@@ -81,8 +87,15 @@ public class Supermercado {
 	public void agregarAlCarrito(Integer numeroDeVenta, Integer codigoDeProducto) throws ProductoSinStock, ProductoInexistente {
 		
 		productoExiste(codigoDeProducto);
+		if(productoExiste(codigoDeProducto)==null){
+			throw new ProductoInexistente();
+		}
 		getStock(codigoDeProducto);
-		this.ventasRealizadas.put(numeroDeVenta,codigoDeProducto);
+		if(getStock(codigoDeProducto)==null){
+			throw new ProductoSinStock();
+		}
+		
+		this.ventasRealizadas.put(numeroDeVenta,getVenta(numeroDeVenta));
 				
 		// Incorpora al carrito de compras de la venta identificada por el "numeroDeVenta", el producto identificado por el "codigoDeProducto"
 	}
