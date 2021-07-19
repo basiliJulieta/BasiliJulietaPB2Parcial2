@@ -25,7 +25,7 @@ public class Supermercado {
 
 	public Boolean ingresarProducto(Producto nuevo) {
 		
-		return this.productosDisponibles.add(nuevo);
+		this.productosDisponibles.add(nuevo);
 		
 		if(!this.productosExistentes.contains(nuevo)) {
 			this.productosExistentes.add(nuevo);
@@ -44,9 +44,9 @@ public class Supermercado {
 			if(producto.getCodigo().equals(codigo)){
 				cantidadDeUnidades++;
 			}
-			return cantidadDeUnidades;
 			// Devuelve la cantidad de unidades de un producto determinado
 		}
+		return cantidadDeUnidades;
 	}
 	
 	private Producto productoExiste(Integer codigoDeProducto) throws ProductoInexistente{

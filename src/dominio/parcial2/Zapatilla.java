@@ -18,7 +18,7 @@ public class Zapatilla extends Producto implements Indumentaria {
 		return this.talle;
 	}
 	
-	@Override
+	
 	public String getColor() {
 		// TODO Auto-generated method stub
 		return this.color;
